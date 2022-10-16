@@ -13,9 +13,7 @@ var listTask = [];
 
 document.querySelector("#addItem").onclick = function () {
   var newTask = document.querySelector("#newTask").value;
-
   var isCheck = true;
-
   isCheck = validation.isEmpty() & validation.isSame(newTask, listTask);
 
   if (isCheck === false) {
