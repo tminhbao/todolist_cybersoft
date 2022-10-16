@@ -12,11 +12,16 @@ var cardToDoElement = document.querySelector(".todo#todo");
 var listTask = [];
 
 document.querySelector("#addItem").onclick = function () {
-  var newTask = document.querySelector("#newTask").value;
-  var isCheck = true;
-  isCheck = validation.isEmpty() & validation.isSame(newTask, listTask);
+  var newTask = document.querySelector("#newTask").value.trim();
 
-  if (isCheck === false) {
+  var isEmptyCheck = true,
+    isSameCheck = true;
+  isEmptyCheck = validation.isEmpty();
+  isSameCheck = validation.isSame(newTask, listTask);
+
+  if (!isEmptyCheck && !isSameCheck) {
+    document.querySelector("#notiContent").style.display = "none";
+    document.querySelector("#notiInput").style.display = "none";
     listTask.push(newTask);
     const liToDoTask = document.createElement("li");
     liToDoTask.innerHTML = `
