@@ -1,13 +1,13 @@
 var validation = {
-  isEmpty: function () {
-    const newTask = document.querySelector("#newTask").value.trim();
-    if (newTask === "") {
-      document.querySelector("#notiContent").innerHTML = `Không được để rỗng`;
-      document.querySelector("#notiInput").style.display = "block";
-      return true;
+  isEmpty: function (newTask) {
+    console.log(newTask + " is empty");
+    if (newTask !== "") {
+      return false;
     }
-    //document.querySelector("#notiInput").style.display = "none";
-    return false;
+    document.querySelector("#notiContent").innerHTML = `Không được để rỗng`;
+    document.querySelector("#notiInput").style.display = "block";
+    document.querySelector("#notiContent").style.display = "block";
+    return true;
   },
   isSame: function (newTask, listTask) {
     if (listTask.length === 0) {
