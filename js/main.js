@@ -1,21 +1,31 @@
 var todoList = new TaskList();
-var completedList = new TaskList();
-var newTodoTask = new Task();
+var completeList = new TaskList();
+
 // ADD TASK
 document.querySelector("#addItem").onclick = function () {
-  var newTask = document.querySelector("#newTask").value.trim();
-  //console.log("newTask: " + newTask);
-  var isEmptyCheck = validation.isEmpty(newTask);
-  var isSameCheck = validation.isSame(newTask, todoList.listTask);
+  // Create a new task
+  var newTodoTask = new Task();
+  newTodoTask.id = Math.random();
+  newTodoTask.taskName = document.querySelector("#newTask").value.trim();
+  newTodoTask.status = "todo";
 
+  // Validation
+  var isEmptyCheck = validation.isEmpty(newTodoTask.taskName);
+  var isSameCheck = validation.isSame(newTodoTask.taskName, todoList.listTask);
+
+  // Push task to the todolist
   if (isEmptyCheck || isSameCheck) {
     return;
   } else if (isEmptyCheck === false && isSameCheck == false) {
     document.querySelector("#notiContent").style.display = "none";
     document.querySelector("#notiInput").style.display = "none";
-    todoList.addTask(newTask);
+    todoList.addTask(newTodoTask);
   }
-  todoList.renderTask(newTask);
+
+  todoList.addTask(newTodoTask);
+
+  // Render todoList
+  todoList.renderTask(newTodoTask);
 };
 
 // CHANGE STATUS

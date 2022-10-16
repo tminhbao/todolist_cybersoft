@@ -1,6 +1,5 @@
 var validation = {
   isEmpty: function (newTask) {
-    console.log(newTask + " is empty");
     if (newTask !== "") {
       return false;
     }
@@ -11,11 +10,10 @@ var validation = {
   },
   isSame: function (newTask, listTask) {
     if (listTask.length === 0) {
-      //document.querySelector("#notiInput").style.display = "none";
       return false;
     } else {
       for (var i = 0; i < listTask.length; i++) {
-        if (newTask === listTask[i]) {
+        if (newTask === listTask[i].taskName) {
           document.querySelector(
             "#notiContent"
           ).innerHTML = `${newTask} đã có trong danh sách`;
