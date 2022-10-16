@@ -28,7 +28,7 @@
         <div class="card__content">
           <div class="card__title">
             <h2>My Tasks</h2>
-            <p>September 9,2020</p>
+            <p class="card-day">September 9,2020</p>
           </div>
           <div class="card__add">
             <input
@@ -40,7 +40,9 @@
               <i class="fa fa-plus"></i>
             </button>
           </div>
-          <div id="notiInput" class="alert-danger" style="display: none"></div>
+          <div id="notiInput" class="alert-danger" style="display: none">
+            <p id="notiContent"></p>
+          </div>
           <div class="card__todo">
             <!-- Uncompleted tasks -->
             <ul class="todo" id="todo"></ul>
@@ -68,5 +70,7 @@
         });
       });
     </script>
+    <script src="./js/main.js"></script>
+    <script src="./js/validation.js"></script>
   </body>
 </html>
