@@ -34,6 +34,9 @@ function deleteToDo(event) {
   if (currentStatus === "todo") {
     todoList.deleteTask(currentIndex);
     todoList.renderToDoTask(null);
+  } else if (currentStatus === "complete") {
+    completedList.deleteTask(currentIndex);
+    completedList.renderCompletedTask(null);
   }
 }
 
