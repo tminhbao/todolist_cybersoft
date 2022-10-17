@@ -1,5 +1,5 @@
 var todoList = new TaskList();
-var completeList = new TaskList();
+var completedList = new TaskList();
 
 // ADD TASK
 document.querySelector("#addItem").onclick = function () {
@@ -22,13 +22,39 @@ document.querySelector("#addItem").onclick = function () {
     todoList.addTask(newTodoTask);
   }
 
-  todoList.addTask(newTodoTask);
-
   // Render todoList
-  todoList.renderTask(newTodoTask);
+  todoList.renderToDoTask(newTodoTask);
 };
 
+// DELETE TASK
+// Delete todolist
+function deleteToDo(event) {
+  const currentIndex = event.target.parentElement.getAttribute("data-index");
+  const currentStatus = event.target.parentElement.getAttribute("data-status");
+  if (currentStatus === "todo") {
+    todoList.deleteTask(currentIndex);
+    todoList.renderToDoTask(null);
+  }
+}
+
 // CHANGE STATUS
+function completeToDo(event) {
+  const currentIndex = event.target.parentElement.getAttribute("data-index");
+  const currentStatus = event.target.parentElement.getAttribute("data-status");
+  if (currentStatus === "todo") {
+    todoList.listTask[currentIndex].status = "complete";
+    completedList.addTask(todoList.listTask[currentIndex]);
+    todoList.deleteTask(currentIndex);
+    todoList.renderToDoTask(null);
+    completedList.renderCompletedTask(null);
+  } else if (currentStatus === "complete") {
+    completedList.listTask[currentIndex].status = "todo";
+    todoList.addTask(completedList.listTask[currentIndex]);
+    completedList.deleteTask(currentIndex);
+    completedList.renderCompletedTask(null);
+    todoList.renderToDoTask(null);
+  }
+}
 
 // CREATE TABLE
 
