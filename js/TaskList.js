@@ -50,7 +50,6 @@ function TaskList() {
     } else {
       var cardToDoElement = document.querySelector(".todo#todo");
       cardToDoElement.innerHTML = "";
-      console.log(this.listTask);
       for (var i = 0; i < this.listTask.length; i++) {
         cardToDoElement.innerHTML += `
           <li>
@@ -68,6 +67,7 @@ function TaskList() {
         `;
       }
     }
+    //setLocalStorage("todolist", JSON.stringify(this.listTask));
   };
   this.renderCompletedTask = function (newCompletedTask) {
     if (newCompletedTask) {
@@ -107,6 +107,8 @@ function TaskList() {
         `;
       }
     }
+    //setLocalStorage("completedlist", JSON.stringify(this.listTask));
   };
+
   this.updateTask = function (event) {};
 }

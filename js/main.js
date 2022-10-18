@@ -1,6 +1,17 @@
 var todoList = new TaskList();
 var completedList = new TaskList();
 
+var todoListTaskArray = getLocalStorage("todoList");
+var completedListTaskArray = getLocalStorage("completedList");
+
+todoList.listTask = todoListTaskArray.listTask || [];
+completedList.listTask = completedListTaskArray.listTask || [];
+
+window.onload = function () {
+  todoList.renderToDoTask(null);
+  completedList.renderCompletedTask(null);
+};
+
 // ADD TASK
 document.querySelector("#addItem").onclick = function () {
   // Create a new task
@@ -24,6 +35,8 @@ document.querySelector("#addItem").onclick = function () {
 
   // Render todoList
   todoList.renderToDoTask(newTodoTask);
+  setLocalStorage("todoList", JSON.stringify(todoList));
+  setLocalStorage("completedList", JSON.stringify(completedList));
 };
 
 // DELETE TASK
@@ -38,6 +51,8 @@ function deleteToDo(event) {
     completedList.deleteTask(currentIndex);
     completedList.renderCompletedTask(null);
   }
+  setLocalStorage("todoList", JSON.stringify(todoList));
+  setLocalStorage("completedList", JSON.stringify(completedList));
 }
 
 // CHANGE STATUS
@@ -57,10 +72,25 @@ function completeToDo(event) {
     completedList.renderCompletedTask(null);
     todoList.renderToDoTask(null);
   }
+  setLocalStorage("todoList", JSON.stringify(todoList));
+  setLocalStorage("completedList", JSON.stringify(completedList));
 }
 
 // CREATE TABLE
 
 // SETLOCALSTORAGE
+function setLocalStorage(name, value) {
+  localStorage.setItem(name, value);
+}
 
 // GETLOCALSTORAGE
+
+function getLocalStorage(name) {
+  if (name === "todoList") {
+    const todoTaskList = JSON.parse(localStorage.getItem("todoList"));
+    return todoTaskList;
+  } else if (name === "completedList") {
+    const completedTaskList = JSON.parse(localStorage.getItem("completedList"));
+    return completedTaskList;
+  }
+}
