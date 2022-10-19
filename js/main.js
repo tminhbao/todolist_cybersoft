@@ -77,6 +77,7 @@ function completeToDo(event) {
 }
 
 // CREATE TABLE
+// Render ÚI
 
 // SETLOCALSTORAGE
 function setLocalStorage(name, value) {
@@ -93,4 +94,16 @@ function getLocalStorage(name) {
     const completedTaskList = JSON.parse(localStorage.getItem("completedList"));
     return completedTaskList;
   }
+}
+
+// UPDATE TASK
+function updateToDo(event) {
+  const currentIndex = event.target.parentElement.getAttribute("data-index");
+  const currentStatus = event.target.parentElement.getAttribute("data-status");
+  const currentId = event.target.parentElement.getAttribute("data-id");
+  const deleteTask = todoList.getTaskById(currentId);
+  document.querySelector("#newTask").value = deleteTask.taskName;
+  todoList.deleteTask(currentId);
+  todoList.renderToDoTask(null);
+  setLocalStorage("todoList", JSON.stringify(todoList));
 }

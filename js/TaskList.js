@@ -2,10 +2,11 @@ function TaskList() {
   this.listTask = [];
   this.findIndex = function (id) {
     for (var i = 0; i < this.listTask.length; i++) {
-      if (this.listTask[i].id === id) {
+      if (Math.abs(this.listTask[i].id - id) < 1e-9) {
         return i;
       }
     }
+    return -1;
   };
   this.addTask = function (newTodoTask) {
     this.listTask.push(newTodoTask);
@@ -15,8 +16,8 @@ function TaskList() {
   };
   this.getTaskById = function (idTask) {
     for (var i = 0; i < this.listTask.length; i++) {
-      if (this.listTask[i].id === idTask) {
-        return i;
+      if (Math.abs(this.listTask[i].id - idTask) < 1e-9) {
+        return this.listTask[i];
       }
     }
     return -1;
@@ -35,6 +36,13 @@ function TaskList() {
       } onclick="deleteToDo(event)">
                       <i class="fa fa-trash-alt"></i>
                   </button>
+                  <button class="edit" data-index=${
+                    this.listTask.length - 1
+                  } data-id=${newTodoTask.id} data-status=${
+        newTodoTask.status
+      } onclick="updateToDo(event)">
+                  <i class="fa fa-edit"></i>
+              </button>
                   <button class="complete" data-index=${
                     this.listTask.length - 1
                   } data-id=${newTodoTask.id} data-status=${
@@ -57,6 +65,9 @@ function TaskList() {
                 <div class="buttons">
                     <button class="remove" data-index=${i} data-id=${this.listTask[i].id} data-status=${this.listTask[i].status} onclick="deleteToDo(event)">
                         <i class="fa fa-trash-alt"></i>
+                    </button>
+                    <button class="edit" data-index=${i} data-id=${this.listTask[i].id} data-status=${this.listTask[i].status} onclick="updateToDo(event)">
+                        <i class="fa fa-edit"></i>
                     </button>
                     <button class="complete" data-index=${i} data-id=${this.listTask[i].id} data-status=${this.listTask[i].status} onclick="completeToDo(event)">
                         <i class="far fa-check-circle"></i>

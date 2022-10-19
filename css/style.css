@@ -284,8 +284,17 @@ ul.todo li .buttons button {
 ul.todo li .buttons .remove {
   color: #aaa;
 }
+
+ul.todo li .buttons .edit {
+  color: #aaa;
+}
+
 ul.todo li .buttons .remove:hover {
   color: #fa396b;
+}
+
+ul.todo li .buttons .edit:hover {
+  color: #ffc107;
 }
 
 ul.todo li .buttons .complete {
